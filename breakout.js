@@ -16,7 +16,9 @@ var Breakout = new Phaser.Class({
 
     preload: function ()
     {
-        this.load.atlas('assets', 'b-assets/breakout.png', 'b-assets/breakout.json');
+        this.load.image('player', 'assets/player.png');
+        this.load.image('bug', 'assets/bug.png');
+        this.load.image('issue', 'assets/issue.png');
     },
 
 
@@ -28,15 +30,15 @@ var Breakout = new Phaser.Class({
 
         //  Create the bricks in a 10x6 grid
         this.bricks = this.physics.add.staticGroup({
-            key: 'assets', frame: [ 'blue1', 'red1', 'green1', 'yellow1', 'silver1', 'purple1' ],
-            frameQuantity: 10,
+            key: 'bug',
+            frameQuantity: 100,
             gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
         });
 
-        this.ball = this.physics.add.image(400, 500, 'assets', 'ball1').setCollideWorldBounds(true).setBounce(1);
+        this.ball = this.physics.add.image(400, 500, 'issue').setCollideWorldBounds(true).setBounce(1);
         this.ball.setData('onPaddle', true);
 
-        this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle1').setImmovable();
+        this.paddle = this.physics.add.image(400, 550, 'player').setImmovable();
 
         //  Our colliders
         this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
