@@ -31,7 +31,7 @@ var Breakout = new Phaser.Class({
         //  Create the bricks in a 10x6 grid
         this.bricks = this.physics.add.staticGroup({
             key: 'bug',
-            frameQuantity: 100,
+            frameQuantity: 60,
             gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
         });
 
