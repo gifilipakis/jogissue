@@ -1,3 +1,5 @@
+var timeText;
+
 var Breakout = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -61,6 +63,7 @@ var Breakout = new Phaser.Class({
             }
 
         }, this);
+        timeText = this.add.text(10, 10);
     },
 
     hitBrick: function (ball, brick)
@@ -115,12 +118,14 @@ var Breakout = new Phaser.Class({
         }
     },
 
-    update: function ()
+    update: function (time)
     {
         if (this.ball.y > 600)
         {
             this.resetBall();
         }
+        var timerdisplay = time/1000
+        timeText.setText('Time: ' + timerdisplay.toFixed(1));
     }
 
 });
