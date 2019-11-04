@@ -69,6 +69,8 @@ var Breakout = new Phaser.Class({
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
         contPonto.setText('Pontos: ' + ponto);
+
+        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     },
 
     hitBrick: function (ball, brick)
@@ -124,13 +126,28 @@ var Breakout = new Phaser.Class({
         }
     },
 
+    pergunta: function (player, bomb, style) {
+        this.physics.pause();
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        // var nick = prompt("Insira seu nickname");
+        var input = game.add.inputField(10, 90);
+        if (this.spacebar.isDown) {
+            this.physics.restore();
+        }
+    },
+
     update: function (time)
     {
         if (this.ball.y > 600)
         {
             this.resetBall();
         }
-        
+
+        if (ponto>=100) {
+            this.pergunta()
+        }
+
         var timerdisplay = time/1000
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
 
@@ -151,3 +168,4 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+game.add.plugin(PhaserInput.Plugin);
