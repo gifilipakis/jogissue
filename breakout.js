@@ -1,7 +1,6 @@
-var timeText;
-
+var ponto = 0;
 var Breakout = new Phaser.Class({
-
+    
     Extends: Phaser.Scene,
 
     initialize:
@@ -20,8 +19,10 @@ var Breakout = new Phaser.Class({
         this.load.atlas('assets', 'b-assets/breakout.png', 'b-assets/breakout.json');
     },
 
+
     create: function ()
     {
+        ponto-=10;
         //  Enable world bounds, but disable the floor
         this.physics.world.setBoundsCollision(true, true, true, false);
 
@@ -64,12 +65,15 @@ var Breakout = new Phaser.Class({
 
         }, this);
         timeText = this.add.text(10, 10);
+        contPonto = this.add.text(10, 25);
     },
 
     hitBrick: function (ball, brick)
     {
+        ponto+=10;
+        contPonto.setText('Pontos: ' + ponto);
         brick.disableBody(true, true);
-
+        
         if (this.bricks.countActive() === 0)
         {
             this.resetLevel();
@@ -78,6 +82,7 @@ var Breakout = new Phaser.Class({
 
     resetBall: function ()
     {
+        
         this.ball.setVelocity(0);
         this.ball.setPosition(this.paddle.x, 500);
         this.ball.setData('onPaddle', true);
@@ -97,7 +102,6 @@ var Breakout = new Phaser.Class({
     hitPaddle: function (ball, paddle)
     {
         var diff = 0;
-
         if (ball.x < paddle.x)
         {
             //  Ball is on the left-hand side of the paddle
@@ -124,8 +128,11 @@ var Breakout = new Phaser.Class({
         {
             this.resetBall();
         }
+        
         var timerdisplay = time/1000
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
+
+
     }
 
 });
