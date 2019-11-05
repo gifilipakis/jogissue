@@ -22,7 +22,7 @@ var Breakout = new Phaser.Class({
 
     create: function ()
     {
-        ponto-=10;
+        
         //  Enable world bounds, but disable the floor
         this.physics.world.setBoundsCollision(true, true, true, false);
 
@@ -66,14 +66,14 @@ var Breakout = new Phaser.Class({
         }, this);
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
+        contPonto.setText('Pontos: ' + ponto);
     },
 
     hitBrick: function (ball, brick)
     {
         ponto+=10;
-        contPonto.setText('Pontos: ' + ponto);
         brick.disableBody(true, true);
-        
+        contPonto.setText('Pontos: ' + ponto);
         if (this.bricks.countActive() === 0)
         {
             this.resetLevel();
