@@ -1,6 +1,8 @@
 var ponto = 0;
+var nick='';
+
 var Breakout = new Phaser.Class({
-    
+
     Extends: Phaser.Scene,
 
     initialize:
@@ -16,6 +18,7 @@ var Breakout = new Phaser.Class({
 
     preload: function ()
     {
+        this.load.html('nameform', 'assets/nameform.html');
         this.load.image('player', 'assets/player.png');
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
@@ -24,14 +27,14 @@ var Breakout = new Phaser.Class({
 
     create: function ()
     {
-        
+        ponto-=10;
         //  Enable world bounds, but disable the floor
         this.physics.world.setBoundsCollision(true, true, true, false);
 
         //  Create the bricks in a 10x6 grid
         this.bricks = this.physics.add.staticGroup({
             key: 'bug',
-            frameQuantity: 60,
+            frameQuantity: 100,
             gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
         });
 
@@ -68,16 +71,17 @@ var Breakout = new Phaser.Class({
         }, this);
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
-        contPonto.setText('Pontos: ' + ponto);
 
-        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        var element = this.add.dom(400, 50).createFromCache('nameform');
+
     },
 
     hitBrick: function (ball, brick)
     {
         ponto+=10;
-        brick.disableBody(true, true);
         contPonto.setText('Pontos: ' + ponto);
+        brick.disableBody(true, true);
+
         if (this.bricks.countActive() === 0)
         {
             this.resetLevel();
@@ -128,13 +132,7 @@ var Breakout = new Phaser.Class({
 
     pergunta: function (player, bomb, style) {
         this.physics.pause();
-        var x = document.createElement("INPUT");
-        x.setAttribute("type", "text");
-        // var nick = prompt("Insira seu nickname");
-        var input = game.add.inputField(10, 90);
-        if (this.spacebar.isDown) {
-            this.physics.restore();
-        }
+
     },
 
     update: function (time)
@@ -164,8 +162,10 @@ var config = {
     scene: [ Breakout ],
     physics: {
         default: 'arcade'
-    }
+    },
+    dom: {
+        createContainer: true
+    },
 };
 
 var game = new Phaser.Game(config);
-game.add.plugin(PhaserInput.Plugin);
