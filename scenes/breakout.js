@@ -1,3 +1,8 @@
+var gameScene = new Phaser.Scene('breakout');
+gameScene.init = function () {
+    console.log('iniciando cena breakout');
+};
+
 var ponto = 0;
 var nick='';
 
@@ -18,7 +23,7 @@ var Breakout = new Phaser.Class({
 
     preload: function ()
     {
-        this.load.html('nameform', 'assets/nameform.html');
+        // this.load.html('nameform', 'assets/nameform.html');
         this.load.image('player', 'assets/player.png');
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
