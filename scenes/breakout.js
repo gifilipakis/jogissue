@@ -1,36 +1,31 @@
 var gameScene = new Phaser.Scene('breakout');
-gameScene.init = function () {
-    console.log('iniciando cena breakout');
-};
 
 var ponto = 0;
 var nick='';
 
-var Breakout = new Phaser.Class({
+gameScene.init = function(){
 
-    Extends: Phaser.Scene,
+    console.log('init breakout')
+    };
 
-    initialize:
-
-        function Breakout ()
+    gameScene.initialize = function ()
         {
             Phaser.Scene.call(this, { key: 'breakout' });
 
             this.bricks;
             this.paddle;
             this.ball;
-        },
+    };
 
-    preload: function ()
+    gameScene.preload = function ()
     {
         // this.load.html('nameform', 'assets/nameform.html');
         this.load.image('player', 'assets/player.png');
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
-    },
+    };
 
-
-    create: function ()
+    gameScene.create = function ()
     {
         ponto-=10;
         //  Enable world bounds, but disable the floor
@@ -79,9 +74,9 @@ var Breakout = new Phaser.Class({
 
         var element = this.add.dom(400, 50).createFromCache('nameform');
 
-    },
+    };
 
-    hitBrick: function (ball, brick)
+    gameScene.hitBrick = function (ball, brick)
     {
         ponto+=10;
         contPonto.setText('Pontos: ' + ponto);
@@ -91,17 +86,17 @@ var Breakout = new Phaser.Class({
         {
             this.resetLevel();
         }
-    },
+    };
 
-    resetBall: function ()
+    gameScene.resetBall = function ()
     {
         
         this.ball.setVelocity(0);
         this.ball.setPosition(this.paddle.x, 500);
         this.ball.setData('onPaddle', true);
-    },
+    };
 
-    resetLevel: function ()
+    gameScene.resetLevel = function ()
     {
         this.resetBall();
 
@@ -110,9 +105,9 @@ var Breakout = new Phaser.Class({
             brick.enableBody(false, 0, 0, true, true);
 
         });
-    },
+    };
 
-    hitPaddle: function (ball, paddle)
+    gameScene.hitPaddle = function (ball, paddle)
     {
         var diff = 0;
         if (ball.x < paddle.x)
@@ -133,14 +128,14 @@ var Breakout = new Phaser.Class({
             //  Add a little random X to stop it bouncing straight up!
             ball.setVelocityX(2 + Math.random() * 8);
         }
-    },
+    };
 
-    pergunta: function (player, bomb, style) {
+    gameScene.pergunta = function (player, bomb, style) {
         this.physics.pause();
 
-    },
+    };
 
-    update: function (time)
+    gameScene.update = function (time)
     {
         if (this.ball.y > 600)
         {
@@ -155,22 +150,21 @@ var Breakout = new Phaser.Class({
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
 
 
-    }
+    };
 
-});
 
-var config = {
-    type: Phaser.WEBGL,
-    width: 800,
-    height: 600,
-    parent: 'phaser-example',
-    scene: [ Breakout ],
-    physics: {
-        default: 'arcade'
-    },
-    dom: {
-        createContainer: true
-    },
-};
+// var config = {
+//     type: Phaser.WEBGL,
+//     width: 800,
+//     height: 600,
+//     parent: 'phaser-example',
+//     scene: [ Breakout ],
+//     physics: {
+//         default: 'arcade'
+//     },
+//     dom: {
+//         createContainer: true
+//     },
+// };
 
-var game = new Phaser.Game(config);
+// var game = new Phaser.Game(config);
