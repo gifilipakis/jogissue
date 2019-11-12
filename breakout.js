@@ -1,4 +1,4 @@
-//var ponto = 10;
+var ponto = 0;
 var Breakout = new Phaser.Class({
     
     Extends: Phaser.Scene,
@@ -66,6 +66,8 @@ var Breakout = new Phaser.Class({
 
         }, this);
         timeText = this.add.text(10, 10);
+        contPonto = this.add.text(10, 25);
+        //contPonto.setText('Pontos: ' + ponto);
         
     },
 
@@ -131,7 +133,6 @@ var Breakout = new Phaser.Class({
         
         var timerdisplay = time/1000
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
-       // contPonto.setText('Pontos' + ponto);
     }
 
 });
