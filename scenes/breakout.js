@@ -1,6 +1,5 @@
+var ponto = 10;
 var gameScene = new Phaser.Scene('breakout');
-
-var ponto = 0;
 var nick='';
 
 gameScene.init = function(){
@@ -34,7 +33,7 @@ gameScene.init = function(){
         //  Create the bricks in a 10x6 grid
         this.bricks = this.physics.add.staticGroup({
             key: 'bug',
-            frameQuantity: 100,
+            frameQuantity: 60,
             gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
         });
 
@@ -71,7 +70,6 @@ gameScene.init = function(){
         }, this);
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
-
         var element = this.add.dom(400, 50).createFromCache('nameform');
 
     };
