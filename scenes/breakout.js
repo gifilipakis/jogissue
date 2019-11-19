@@ -18,7 +18,6 @@ gameScene.init = function(){
 
     gameScene.preload = function ()
     {
-        // this.load.html('nameform', 'assets/nameform.html');
         this.load.image('player', 'assets/player.png');
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
@@ -70,7 +69,6 @@ gameScene.init = function(){
         }, this);
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
-        var element = this.add.dom(400, 50).createFromCache('nameform');
 
     };
 
