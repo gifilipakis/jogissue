@@ -142,7 +142,7 @@ gameScene.init = function(){
             this.pergunta()
         }
 
-        var timerdisplay = time/1000
+        var timerdisplay = time/1000;
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
 
 
