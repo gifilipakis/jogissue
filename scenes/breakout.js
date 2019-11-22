@@ -1,6 +1,8 @@
 var ponto = 10;
+var pontoOld = 0;
 var gameScene = new Phaser.Scene('breakout');
 var nick='';
+var isPaused = false;
 
 gameScene.init = function(){
 
@@ -21,6 +23,7 @@ gameScene.init = function(){
         this.load.image('player', 'assets/player.png');
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
+        this.load.html('pergunta', 'assets/pergunta.html');;
     };
 
     gameScene.create = function ()
@@ -77,6 +80,10 @@ gameScene.init = function(){
         ponto+=10;
         contPonto.setText('Pontos: ' + ponto);
         brick.disableBody(true, true);
+        if (ponto - pontoOld == 20){
+            isPaused = true;
+        }
+        console.log(ponto, pontoOld)
 
         if (this.bricks.countActive() === 0)
         {
@@ -126,26 +133,31 @@ gameScene.init = function(){
         }
     };
 
-    gameScene.pergunta = function (player, bomb, style) {
-        this.physics.pause();
+    gameScene.pergunta = function (isPaused)
+    {
+        if (isPaused == true){
+            this.physics.pause();
+            var element = this.add.dom(400, 300).createFromCache('pergunta');
 
-    };
+            
 
-    gameScene.update = function (time)
+        }
+
+    }
+
+    gameScene.update = function (time, ponto, pontoOld, perguntas)
     {
         if (this.ball.y > 600)
         {
             this.resetBall();
         }
 
-        if (ponto>=100) {
-            this.pergunta()
-        }
-
         var timerdisplay = time/1000
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
 
-
+        if (isPaused == true){
+            this.pergunta()
+        }
     };
 
 
