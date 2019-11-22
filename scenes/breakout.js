@@ -152,7 +152,6 @@ gameScene.init = function(){
             this.resetBall();
         }
 
-        var timerdisplay = time/1000
         timeText.setText('Time: ' + timerdisplay.toFixed(1));
 
         if (isPaused == true){
