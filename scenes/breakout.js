@@ -26,7 +26,7 @@ gameScene.init = function(){
         this.load.html('pergunta', 'assets/pergunta.html');;
     };
 
-    gameScene.create = function ()
+    gameScene.create = function (time)
     {
         ponto-=10;
         //  Enable world bounds, but disable the floor
