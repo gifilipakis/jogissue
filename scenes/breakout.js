@@ -3,6 +3,7 @@ var pontoOld = 0;
 var gameScene = new Phaser.Scene('breakout');
 var nick='';
 var isPaused = false;
+var timer = 0;
 
 gameScene.init = function(){
 
@@ -72,8 +73,9 @@ gameScene.init = function(){
         }, this);
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
+        timer = this.time.addEvent({delay: 5000000000000000000000000000000000000000000000000000000000000000000000000000000000000,});
 
-    };
+        };
 
     gameScene.hitBrick = function (ball, brick)
     {
@@ -143,7 +145,7 @@ gameScene.init = function(){
 
         }
 
-    }
+    };
 
     gameScene.update = function (time, ponto, pontoOld, perguntas)
     {
@@ -152,11 +154,11 @@ gameScene.init = function(){
             this.resetBall();
         }
 
-        timeText.setText('Time: ' + timerdisplay.toFixed(1));
-
         if (isPaused == true){
             this.pergunta()
         }
+
+        timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1));
     };
 
 
