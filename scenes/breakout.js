@@ -51,7 +51,7 @@ gameScene.init = function(){
         this.load.html('pergunta', 'assets/pergunta.html');;
     };
 
-    gameScene.create = function ()
+    gameScene.create = function (time)
     {
         ponto-=10;
         //  Enable world bounds, but disable the floor
@@ -97,8 +97,9 @@ gameScene.init = function(){
         }, this);
         timeText = this.add.text(10, 10);
         contPonto = this.add.text(10, 25);
+        timer = this.time.addEvent({delay: 5000000000000000000000000000000000000000000000000000000000000000000000000000000000000,});
 
-    };
+        };
 
     gameScene.hitBrick = function (ball, brick)
     {
@@ -195,6 +196,7 @@ gameScene.init = function(){
         {
             this.resetBall();
         }
+        timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1));
     };
 
 
