@@ -3,7 +3,32 @@ var pontoOld = 0;
 var gameScene = new Phaser.Scene('breakout');
 var nick='';
 var isPaused = false;
-
+var perguntas = [
+    {
+        'pergunta':'Pergunta número 1',
+        'resposta':'V'
+    },
+    {
+        'pergunta':'Pergunta número 2',
+        'resposta':'V'
+    },
+    {
+        'pergunta':'Pergunta número 3',
+        'resposta':'F'
+    },
+    {
+        'pergunta':'Pergunta número 4',
+        'resposta':'V'
+    },
+    {
+        'pergunta':'Pergunta número 5',
+        'resposta':'F'
+    },
+    {
+        'pergunta':'Pergunta número 6',
+        'resposta':'V'
+    }
+]
 gameScene.init = function(){
 
     console.log('init breakout')
@@ -80,10 +105,12 @@ gameScene.init = function(){
         ponto+=10;
         contPonto.setText('Pontos: ' + ponto);
         brick.disableBody(true, true);
-        if (ponto - pontoOld == 20){
-            isPaused = true;
-        }
         console.log(ponto, pontoOld)
+
+        if (ponto - pontoOld == 20){
+            this.physics.pause();
+            this.pergunta();
+        }
 
         if (this.bricks.countActive() === 0)
         {
@@ -133,29 +160,40 @@ gameScene.init = function(){
         }
     };
 
-    gameScene.pergunta = function (isPaused)
+    gameScene.pergunta = function ()
     {
-        if (isPaused == true){
-            this.physics.pause();
-            var element = this.add.dom(400, 300).createFromCache('pergunta');
+        var element = this.add.dom(400, 300).createFromCache('pergunta');
+        var paragraph = document.getElementById("pergunta");
+        var questao = perguntas[Math.floor(Math.random() * 6)]
+        var text = document.createTextNode(questao['pergunta']);
+        paragraph.appendChild(text);
 
-            
-
-        }
-
+        element.addListener('click');
+        element.on('click', function (event) {
+            if (event.target.name === 'verdadeiro')
+            {
+                if (questao['resposta'] == 'V'){
+                    ponto += 10;
+                    console.log(ponto)
+                }
+  
+            } else {
+                if (questao['resposta'] == 'F'){
+                    ponto += 10;
+                    console.log(ponto)
+                }
+            }
+            element.setVisible(false);
+            pontoOld = ponto;
+            this.physics.resume();
+        });
     }
 
-    gameScene.update = function (time, ponto, pontoOld, perguntas)
+    gameScene.update = function ()
     {
         if (this.ball.y > 600)
         {
             this.resetBall();
-        }
-
-        timeText.setText('Time: ' + timerdisplay.toFixed(1));
-
-        if (isPaused == true){
-            this.pergunta()
         }
     };
 
