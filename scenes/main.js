@@ -42,7 +42,7 @@ mainScene.create = function () {
                 });
 
                 iniciar = true;
-                var tempoEstimado = this.getChildByName('tempo').innerHTML;
+                var tempoEstimado = this.getChildByName('tempo').value;
                 localStorage.setItem('tempoestimado', tempoEstimado);
             }
             else
