@@ -32,12 +32,9 @@ gameoverScene.create = function () {
     }
 
     this.add.text(16, 460, 'O jogo terminou', { fontSize: '18px', fill: '#fff' });
-    this.add.text(16, 480, 'Pressione a barra de espaço para reiniciar', { fontSize: '18px', fill: '#fff' });
+    this.add.text(16, 480, 'Pressione F5 para reiniciar', { fontSize: '18px', fill: '#fff' });
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 };
 
 gameoverScene.update = function () {
-    if (this.spacebar.isDown) {
-        this.scene.start('main');
-    }
 };

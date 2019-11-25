@@ -7,27 +7,27 @@ var perguntas = [
     {
         'pergunta':'O primeiro passo do desenvolvimento de um projeto é a coleta de requisitos',
         'resposta':'V'
-    },
-    {
-     'pergunta':'Pergunta número 2',
-     'resposta':'V'
-    },
-    {
-        'pergunta':'Pergunta número 3',
-        'resposta':'F'
-    },
-    {
-        'pergunta':'Pergunta número 4',
-        'resposta':'V'
-    },
-    {
-        'pergunta':'Pergunta número 5',
-        'resposta':'F'
-    },
-    {
-        'pergunta':'Pergunta número 6',
-        'resposta':'V'
     }
+    // {
+    //  'pergunta':'Pergunta número 2',
+    //  'resposta':'V'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 3',
+    //     'resposta':'F'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 4',
+    //     'resposta':'V'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 5',
+    //     'resposta':'F'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 6',
+    //     'resposta':'V'
+    // }
 ]
 gameScene.init = function(){
 
@@ -164,8 +164,8 @@ gameScene.init = function(){
     {
         var element = this.add.dom(400, 300).createFromCache('pergunta');
         var paragraph = document.getElementById("pergunta");
-        // var questao = perguntas[0]
-        var questao = perguntas[Math.floor(Math.random() * 6)]
+        var questao = perguntas[0]
+        // var questao = perguntas[Math.floor(Math.random() * 6)]
         console.log(questao)
         var text = document.createTextNode(questao['pergunta']);
         console.log(text)
