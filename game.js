@@ -23,6 +23,7 @@
         scene: [
             mainScene,
             gameScene,
+            gameoverScene,
             // gameStart,
             // gameOver
         ]

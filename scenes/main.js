@@ -15,7 +15,7 @@ mainScene.create = function () {
     // this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     var element = this.add.dom(400, 300).createFromCache('nameform');
-    console.log(element)
+    console.log(element);
     // element.setPerspective(800);
 
     element.addListener('click');
@@ -24,6 +24,7 @@ mainScene.create = function () {
         if (event.target.name === 'loginButton')
         {
             var inputTempo = this.getChildByName('tempo');
+            console.log(inputTempo);
 
             //  Have they entered anything?
             if (inputTempo.value !== '') //&&  inputTempo.isInteger()
@@ -42,6 +43,8 @@ mainScene.create = function () {
                 });
 
                 iniciar = true;
+                var tempoEstimado = this.getChildByName('tempo').innerHTML;
+                localStorage.setItem('tempoestimado', tempoEstimado);
             }
             else
             {

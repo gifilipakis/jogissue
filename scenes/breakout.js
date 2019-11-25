@@ -192,13 +192,19 @@ gameScene.init = function(){
             isPaused = false;
             element.destroy()
         });
-    }
+    };
 
     gameScene.update = function ()
     {
         if (this.ball.y > 600)
         {
             this.resetBall();
+        }
+        if (ponto > 10)
+        {
+            localStorage.setItem('pontuacao', ponto);
+            localStorage.setItem('tempoGasto', timer.getElapsedSeconds().toFixed(1));
+            this.scene.start('gameover');
         }
         timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1));
 
