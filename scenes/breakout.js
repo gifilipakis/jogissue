@@ -5,29 +5,29 @@ var nick='';
 var isPaused = false;
 var perguntas = [
     {
-        'pergunta':'Pergunta número 1',
-        'resposta':'V'
-    },
-    {
-        'pergunta':'Pergunta número 2',
-        'resposta':'V'
-    },
-    {
-        'pergunta':'Pergunta número 3',
-        'resposta':'F'
-    },
-    {
-        'pergunta':'Pergunta número 4',
-        'resposta':'V'
-    },
-    {
-        'pergunta':'Pergunta número 5',
-        'resposta':'F'
-    },
-    {
-        'pergunta':'Pergunta número 6',
+        'pergunta':'O primeiro passo do desenvolvimento de um projeto é a coleta de requisitos',
         'resposta':'V'
     }
+    // {
+    //     'pergunta':'Pergunta número 2',
+    //     'resposta':'V'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 3',
+    //     'resposta':'F'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 4',
+    //     'resposta':'V'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 5',
+    //     'resposta':'F'
+    // },
+    // {
+    //     'pergunta':'Pergunta número 6',
+    //     'resposta':'V'
+    // }
 ]
 gameScene.init = function(){
 
@@ -108,7 +108,7 @@ gameScene.init = function(){
         brick.disableBody(true, true);
         console.log(ponto, pontoOld)
 
-        if (ponto - pontoOld == 20){
+        if (ponto - pontoOld == 100){
             this.physics.pause();
             this.pergunta();
         }
@@ -165,7 +165,7 @@ gameScene.init = function(){
     {
         var element = this.add.dom(400, 300).createFromCache('pergunta');
         var paragraph = document.getElementById("pergunta");
-        var questao = perguntas[Math.floor(Math.random() * 6)]
+        var questao = perguntas[Math.floor(Math.random() * 1)]
         var text = document.createTextNode(questao['pergunta']);
         paragraph.appendChild(text);
 
