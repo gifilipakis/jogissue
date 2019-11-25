@@ -5,7 +5,7 @@
         type: Phaser.AUTO,
         parent: 'phaser-example',
         title: 'JogIssue \n',
-        backgroundColor: 0x336699,
+        backgroundColor: 0x00000,
         input: {
             keyboard: true,
             mouse: true,
