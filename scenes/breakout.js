@@ -191,7 +191,7 @@ gameScene.init = function(){
             isPaused = false;
             element.destroy()
         });
-    }
+    };
 
     gameScene.update = function ()
     {
@@ -201,7 +201,7 @@ gameScene.init = function(){
             contPonto.setText('Pontos: ' + ponto);
             this.resetBall();
         }
-        timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1));
+        timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1) +' s');
 
         if (isPaused == true){
             this.physics.pause()

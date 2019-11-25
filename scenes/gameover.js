@@ -13,8 +13,8 @@ gameoverScene.create = function () {
     var tempoGasto = parseFloat(localStorage['tempoGasto']);
     var tempoEstimado = parseFloat(localStorage['tempoestimado']);
     if (tempoGasto >= tempoEstimado*0.75 && tempoGasto <= tempoEstimado*1.25) {
-        this.add.text(16, 360, 'Você estimou:'+ tempoEstimado, { fontSize: '18px', fill: '#fff' });
-        this.add.text(16, 380, 'Você gastou:'+ tempoGasto, { fontSize: '18px', fill: '#fff' });
+        this.add.text(16, 360, 'Você estimou:'+ tempoEstimado +' s', { fontSize: '18px', fill: '#fff' });
+        this.add.text(16, 380, 'Você gastou:'+ tempoGasto +' s', { fontSize: '18px', fill: '#fff' });
         this.add.text(16, 400, 'Você Ganhou !!', { fontSize: '18px', fill: '#fff' });
     } else {
         this.add.text(16, 360, 'Você estimou:'+ tempoEstimado, { fontSize: '18px', fill: '#fff' });

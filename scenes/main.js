@@ -43,7 +43,6 @@ mainScene.create = function () {
                 });
 
                 iniciar = true;
-                inputTempo.destroy()
             }
             else
             {
