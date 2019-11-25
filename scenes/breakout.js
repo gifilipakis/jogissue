@@ -1,8 +1,9 @@
 var ponto = 10;
-var pontoOld = 0;
+var hits = 0;
 var gameScene = new Phaser.Scene('breakout');
 var nick='';
 var isPaused = false;
+var blaster;
 var perguntas = [
     {
         'pergunta':'O primeiro passo do desenvolvimento de um projeto é a coleta de requisitos',
@@ -48,11 +49,13 @@ gameScene.init = function(){
         this.load.image('player', 'assets/player.png');
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
-        this.load.html('pergunta', 'assets/pergunta.html');;
+        this.load.html('pergunta', 'assets/pergunta.html');
+        this.load.audio('blaster', 'assets/audio/SoundEffects/blaster.mp3');
     };
 
     gameScene.create = function (time)
     {
+        blaster = game.add.audio('blaster');
         ponto-=10;
         //  Enable world bounds, but disable the floor
         this.physics.world.setBoundsCollision(true, true, true, false);
@@ -103,14 +106,16 @@ gameScene.init = function(){
 
     gameScene.hitBrick = function (ball, brick)
     {
+        blaster.play();
+        break;
         ponto+=10;
         contPonto.setText('Pontos: ' + ponto);
         brick.disableBody(true, true);
-        console.log(ponto, pontoOld)
-
-        if (ponto - pontoOld == 100){
+        hits += 1;
+        if (hits == 10){
             isPaused = true;
             this.pergunta();
+            hits = 0;
         }
 
         if (this.bricks.countActive() === 0)
@@ -192,19 +197,15 @@ gameScene.init = function(){
             isPaused = false;
             element.destroy()
         });
-    };
+    }
 
     gameScene.update = function ()
     {
         if (this.ball.y > 600)
         {
+            ponto -= 5;
+            contPonto.setText('Pontos: ' + ponto);
             this.resetBall();
-        }
-        if (ponto > 10)
-        {
-            localStorage.setItem('pontuacao', ponto);
-            localStorage.setItem('tempoGasto', timer.getElapsedSeconds().toFixed(1));
-            this.scene.start('gameover');
         }
         timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1));
 
