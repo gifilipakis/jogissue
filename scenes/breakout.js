@@ -3,7 +3,6 @@ var hits = 0;
 var gameScene = new Phaser.Scene('breakout');
 var nick='';
 var isPaused = false;
-var blaster;
 var perguntas = [
     {
         'pergunta':'O primeiro passo do desenvolvimento de um projeto é a coleta de requisitos',
@@ -42,6 +41,7 @@ gameScene.init = function(){
             this.bricks;
             this.paddle;
             this.ball;
+            this.blaster;
     };
 
     gameScene.preload = function ()
@@ -50,12 +50,11 @@ gameScene.init = function(){
         this.load.image('bug', 'assets/bug.png');
         this.load.image('issue', 'assets/issue.png');
         this.load.html('pergunta', 'assets/pergunta.html');
-        this.load.audio('blaster', 'assets/audio/SoundEffects/blaster.mp3');
+        this.load.audio('blaster', 'assets/blaster.mp3');
     };
 
     gameScene.create = function (time)
     {
-        blaster = game.add.audio('blaster');
         ponto-=10;
         //  Enable world bounds, but disable the floor
         this.physics.world.setBoundsCollision(true, true, true, false);
@@ -66,7 +65,7 @@ gameScene.init = function(){
             frameQuantity: 60,
             gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
         });
-
+        this.blaster = this.sound.add('blaster');
         this.ball = this.physics.add.image(400, 500, 'issue').setCollideWorldBounds(true).setBounce(1);
         this.ball.setData('onPaddle', true);
 
@@ -106,8 +105,7 @@ gameScene.init = function(){
 
     gameScene.hitBrick = function (ball, brick)
     {
-        blaster.play();
-        break;
+        this.blaster.play();
         ponto+=10;
         contPonto.setText('Pontos: ' + ponto);
         brick.disableBody(true, true);
