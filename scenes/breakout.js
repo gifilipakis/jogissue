@@ -7,27 +7,27 @@ var perguntas = [
     {
         'pergunta':'O primeiro passo do desenvolvimento de um projeto é a coleta de requisitos',
         'resposta':'V'
+    },
+    {
+     'pergunta':'Pergunta número 2',
+     'resposta':'V'
+    },
+    {
+        'pergunta':'Pergunta número 3',
+        'resposta':'F'
+    },
+    {
+        'pergunta':'Pergunta número 4',
+        'resposta':'V'
+    },
+    {
+        'pergunta':'Pergunta número 5',
+        'resposta':'F'
+    },
+    {
+        'pergunta':'Pergunta número 6',
+        'resposta':'V'
     }
-    // {
-    //     'pergunta':'Pergunta número 2',
-    //     'resposta':'V'
-    // },
-    // {
-    //     'pergunta':'Pergunta número 3',
-    //     'resposta':'F'
-    // },
-    // {
-    //     'pergunta':'Pergunta número 4',
-    //     'resposta':'V'
-    // },
-    // {
-    //     'pergunta':'Pergunta número 5',
-    //     'resposta':'F'
-    // },
-    // {
-    //     'pergunta':'Pergunta número 6',
-    //     'resposta':'V'
-    // }
 ]
 gameScene.init = function(){
 
@@ -109,7 +109,7 @@ gameScene.init = function(){
         console.log(ponto, pontoOld)
 
         if (ponto - pontoOld == 100){
-            this.physics.pause();
+            isPaused = true;
             this.pergunta();
         }
 
@@ -165,28 +165,32 @@ gameScene.init = function(){
     {
         var element = this.add.dom(400, 300).createFromCache('pergunta');
         var paragraph = document.getElementById("pergunta");
-        var questao = perguntas[Math.floor(Math.random() * 1)]
+        // var questao = perguntas[0]
+        var questao = perguntas[Math.floor(Math.random() * 6)]
+        console.log(questao)
         var text = document.createTextNode(questao['pergunta']);
+        console.log(text)
         paragraph.appendChild(text);
+        console.log(paragraph)
 
         element.addListener('click');
         element.on('click', function (event) {
-            if (event.target.name === 'verdadeiro')
+            if (event.target.name == 'verdadeiro')
             {
                 if (questao['resposta'] == 'V'){
                     ponto += 10;
-                    console.log(ponto)
+                    contPonto.setText('Pontos: ' + ponto);
                 }
-  
             } else {
                 if (questao['resposta'] == 'F'){
                     ponto += 10;
-                    console.log(ponto)
+                    contPonto.setText('Pontos: ' + ponto);
                 }
             }
             element.setVisible(false);
             pontoOld = ponto;
-            this.physics.resume();
+            isPaused = false;
+            element.destroy()
         });
     }
 
@@ -197,6 +201,12 @@ gameScene.init = function(){
             this.resetBall();
         }
         timeText.setText('Time: ' + timer.getElapsedSeconds().toFixed(1));
+
+        if (isPaused == true){
+            this.physics.pause()
+        } else {
+            this.physics.resume();
+        }
     };
 
 
