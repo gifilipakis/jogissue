@@ -132,13 +132,9 @@ gameScene.init = function(){
 
     gameScene.resetLevel = function ()
     {
-        this.resetBall();
-
-        this.bricks.children.each(function (brick) {
-
-            brick.enableBody(false, 0, 0, true, true);
-
-        });
+        localStorage.setItem('pontuacao', ponto);
+        localStorage.setItem('tempoGasto', timer.getElapsedSeconds().toFixed(1));
+        this.scene.start('gameover');
     };
 
     gameScene.hitPaddle = function (ball, paddle)
