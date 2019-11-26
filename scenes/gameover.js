@@ -9,7 +9,7 @@ gameoverScene.preload = function () {
 };
 
 gameoverScene.create = function () {
-    this.add.text(16, 16, 'Potuação Final:'+ localStorage['pontuacao'], { fontSize: '32px', fill: '#fff' });
+    this.add.text(16, 16, 'Pontuação Final:'+ localStorage['pontuacao'], { fontSize: '32px', fill: '#fff' });
     var tempoGasto = parseFloat(localStorage['tempoGasto']);
     var tempoEstimado = parseFloat(localStorage['tempoestimado']);
     var pontuacao = parseFloat(localStorage['pontuacao']);
